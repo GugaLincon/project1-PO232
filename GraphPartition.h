@@ -1,5 +1,5 @@
 #include "Graph.h"
-#include "UnionFind.h"
+#include "UnionFind/UnionFind.h"
 
 #ifndef UNTITLED_GRAPHPARTITION_H
 #define UNTITLED_GRAPHPARTITION_H
