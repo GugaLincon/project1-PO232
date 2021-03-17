@@ -19,7 +19,32 @@ void Graph::buildGraph(list<pair<int, int>> & edges) {
 }
 
 void Graph::WeisfeilerLehman() {
-    //TODO
+    //TODO: Finish this algorithm
+    //The starting hash is the degree of the vertex, as suggested by the professor references
+    for(int i=0; i<capacity; i++)
+    {
+        info[i].curHash = gr[i].size();
+        cout << info[i].nextHash << endl;
+    }
+
+    // Iteratively calculate new hash for the set of neighbors
+    while(true /* TODO: Create the condition function */)
+    {
+        hash<size_t> hashFunc = hash<size_t>();
+        for(int i=0; i<capacity; i++)
+        {
+            for(int & e : gr[i])
+            {
+                info[i].nextHash ^= hashFunc(info[e].curHash);
+            }
+        }
+        for(int i=0; i<capacity; i++)
+        {
+            swap(info[i].curHash, info[i].nextHash);
+            info[i].nextHash = 0;
+        }
+    }
+
 }
 
 bool Graph::operator==(Graph &that) {

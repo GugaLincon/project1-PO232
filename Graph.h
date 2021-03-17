@@ -18,6 +18,7 @@ private:
     struct nodeInfo {
         std::size_t curHash;
         std::size_t nextHash;
+        nodeInfo() : curHash(0), nextHash(0) {};
     };
     vector<list<int>> gr;
     vector<nodeInfo> info;
