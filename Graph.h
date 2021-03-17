@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include "GraphPartition.h"
 
 #ifndef UNTITLED_GRAPH_H
 #define UNTITLED_GRAPH_H
@@ -7,11 +8,13 @@ using namespace std;
 class Graph {
 
 public:
-    Graph(int size);
+    explicit Graph(int size);
     void addEdge(int a, int b);
     void buildGraph(list<pair<int, int>> & edges);
     void WeisfeilerLehman(); // Implements the algorithm
     bool operator== (Graph & that); //Compares if the two graphs are isomorphic (after running the algorithm)
+    friend class GraphPartition;
+    GraphPartition currentPartition;
 
 private:
     int capacity;

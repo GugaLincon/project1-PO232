@@ -35,7 +35,8 @@ void Graph::WeisfeilerLehman() {
         {
             for(int & e : gr[i])
             {
-                info[i].nextHash ^= hashFunc(info[e].curHash);
+                info[i].nextHash = (info[i].nextHash == 0)?
+                        hashFunc(info[e].curHash) : (info[i].nextHash^hashFunc(info[e].curHash));
             }
         }
         for(int i=0; i<capacity; i++)
