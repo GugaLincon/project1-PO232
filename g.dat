@@ -1,12 +1,13 @@
 digraph G {
     edge[dir=none]
+
 0 -> 1
 1 -> 2
 1 -> 4
 3 -> 4
 4 -> 5
 
-3
-4
-5
+4 [label="Gustavo Lima"]
+
+5 -> 6
 }
