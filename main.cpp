@@ -1,6 +1,9 @@
-#include <iostream>
+#include "graphvizParser.cpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    int v;
+    vector<int> a[5000];
+    v = parseGraphviz("../g.dat", a);
+
     return 0;
 }
