@@ -17,3 +17,12 @@ void Graph::buildGraph(list<pair<int, int>> & edges) {
         addEdge(p.first, p.second);
     }
 }
+
+void Graph::WeisfeilerLehman() {
+    //TODO
+}
+
+bool Graph::operator==(Graph &that) {
+    //TODO
+    return false;
+}
