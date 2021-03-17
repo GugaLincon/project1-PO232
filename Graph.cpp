@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include "GraphPartition.h"
 
 Graph::Graph(int size) {
     gr.resize(size);
@@ -19,16 +20,18 @@ void Graph::buildGraph(list<pair<int, int>> & edges) {
 }
 
 void Graph::WeisfeilerLehman() {
-    //TODO: Finish this algorithm
     //The starting hash is the degree of the vertex, as suggested by the professor references
     for(int i=0; i<capacity; i++)
     {
         info[i].curHash = gr[i].size();
-        cout << info[i].nextHash << endl;
     }
 
+    unique_ptr<GraphPartition> cur = make_unique<GraphPartition>(capacity);
+    unique_ptr<GraphPartition> old = make_unique<GraphPartition>(capacity);
+    cur->createPartition(this);
+
     // Iteratively calculate new hash for the set of neighbors
-    while(true /* TODO: Create the condition function */)
+    do
     {
         hash<size_t> hashFunc = hash<size_t>();
         for(int i=0; i<capacity; i++)
@@ -44,7 +47,10 @@ void Graph::WeisfeilerLehman() {
             swap(info[i].curHash, info[i].nextHash);
             info[i].nextHash = 0;
         }
-    }
+        cur.swap(old);
+        cur->reset();
+        cur->createPartition(this);
+    } while((*cur) != (*old));
 
 }
 

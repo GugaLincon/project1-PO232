@@ -3,6 +3,6 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
-file(GLOB UnionFind "*.h" "*.cpp")
+file(GLOB curDir "*.cpp" "*.h")
 
-add_executable(untitled main.cpp Parser.h Parser.cpp Graph.cpp Graph.h ${UnionFind})
+add_executable(untitled ${curDir} UnionFind/UnionFind.cpp UnionFind/UnionFind.h)

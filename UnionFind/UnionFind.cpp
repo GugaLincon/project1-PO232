@@ -1,6 +1,6 @@
 #include "UnionFind.h"
 
-UnionFind::UnionFind(int cap) {
+UnionFind::UnionFind(int cap) : cap(cap) {
     par.resize(cap);
     for(int i=0; i<cap; i++)
         par[i] = i;
@@ -25,4 +25,11 @@ void UnionFind::unite(int a, int b) {
 
     par[a] = x;
     par[b] = x;
+}
+
+void UnionFind::reset() {
+    for(int i=0; i<cap; i++)
+    {
+        par[i] = i;
+    }
 }

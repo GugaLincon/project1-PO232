@@ -11,7 +11,9 @@ public:
 
     int find(int x);
     void unite(int a, int b);
+    void reset();
 private:
+    int cap;
     vector<int> par;
 };
 
