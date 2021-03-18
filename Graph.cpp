@@ -31,15 +31,17 @@ void Graph::WeisfeilerLehman() {
     cur->createPartition(this);
 
     // Iteratively calculate new hash for the set of neighbors
+    int j =0;
     do
     {
-        hash<size_t> hashFunc = hash<size_t>();
+        hash<string> hashFunc = hash<string>();
         for(int i=0; i<capacity; i++)
         {
             for(int & e : gr[i])
             {
-                info[i].nextHash = (info[i].nextHash == 0)?
-                        hashFunc(info[e].curHash) : (info[i].nextHash^hashFunc(info[e].curHash));
+                //cout << "cur: " << info[e].curHash << " new: " << hashFunc(to_string(info[e].curHash)) << endl;
+                info[i].nextHash = (!info[i].nextHash)?
+                        hashFunc(to_string(info[e].curHash)) : (info[i].nextHash^hashFunc(to_string(info[e].curHash)));
             }
         }
         for(int i=0; i<capacity; i++)
@@ -50,11 +52,28 @@ void Graph::WeisfeilerLehman() {
         cur.swap(old);
         cur->reset();
         cur->createPartition(this);
-    } while((*cur) != (*old));
+        j++;
+    } while((*cur) != (*old) && j < 100);
 
 }
 
 bool Graph::operator==(Graph &that) {
-    //TODO
-    return false;
+    if(capacity != that.capacity)
+        return false;
+    unordered_map<std::size_t, int> mp;
+    for(int i=0; i<capacity; i++)
+    {
+        mp[info[i].curHash]++;
+    }
+
+    for(int i=0; i<capacity; i++)
+    {
+        if(mp.find(that.info[i].curHash) == mp.end())
+            return false;
+        mp[that.info[i].curHash]--;
+        if(mp[that.info[i].curHash] == 0)
+            mp.erase(that.info[i].curHash);
+    }
+
+    return mp.empty();
 }
