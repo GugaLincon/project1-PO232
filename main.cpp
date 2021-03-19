@@ -20,7 +20,7 @@ void checkIsomorphism(string & s1, string & s2)
 
     cout << s1 << " and " << s2 << " are ";
     if(gr1 == gr2)
-        cout << "Isomorphic" << endl;
+        cout << "inconclusive" << endl;
     else
         cout << "not isomorphic" << endl;
 }

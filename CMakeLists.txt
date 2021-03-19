@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 file(GLOB curDir "*.cpp" "*.h")
 
-add_executable(untitled ${curDir} UnionFind/UnionFind.cpp UnionFind/UnionFind.h)
+add_executable(untitled ${curDir})

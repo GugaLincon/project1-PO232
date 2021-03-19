@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include "GraphPartition.h"
 
 Graph::Graph(int size) {
     gr.resize(size);
@@ -26,9 +25,6 @@ void Graph::WeisfeilerLehman() {
         info[i].curHash = gr[i].size();
     }
 
-    unique_ptr<GraphPartition> cur = make_unique<GraphPartition>(capacity);
-    unique_ptr<GraphPartition> old = make_unique<GraphPartition>(capacity);
-    cur->createPartition(this);
 
     // Iteratively calculate new hash for the set of neighbors
     int j =0;
@@ -39,7 +35,6 @@ void Graph::WeisfeilerLehman() {
         {
             for(int & e : gr[i])
             {
-                //cout << "cur: " << info[e].curHash << " new: " << hashFunc(to_string(info[e].curHash)) << endl;
                 info[i].nextHash = (!info[i].nextHash)?
                         hashFunc(to_string(info[e].curHash)) : (info[i].nextHash^hashFunc(to_string(info[e].curHash)));
             }
@@ -49,11 +44,8 @@ void Graph::WeisfeilerLehman() {
             swap(info[i].curHash, info[i].nextHash);
             info[i].nextHash = 0;
         }
-        cur.swap(old);
-        cur->reset();
-        cur->createPartition(this);
         j++;
-    } while((*cur) != (*old) && j < 100);
+    } while(j < 100);
 
 }
 

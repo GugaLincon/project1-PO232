@@ -11,7 +11,6 @@ public:
     void buildGraph(list<pair<int, int>> & edges);
     void WeisfeilerLehman(); // Implements the algorithm
     bool operator== (Graph & that); //Compares if the two graphs are isomorphic (after running the algorithm)
-    friend class GraphPartition;
 
 private:
     int capacity;

@@ -1,4 +1,4 @@
-digraph G {
+digraph G3 {
     edge[dir=none]
 
 0 -> 4
